@@ -18,22 +18,18 @@ on:
       TestTag:
         type: choice
         options:
-          - '@Login'
-          - '@SummaryWidget'
-          - '@ServiceNow'
-        default: '@SummaryWidget'
+          - "@Login"
+          - "@SummaryWidget"
+          - "@ServiceNow"
+        default: "@SummaryWidget"
         required: true
 permissions:
   scm-token-own: read
   scm-token-org: read
 jobs:
   test:
-    outputs:
-      output1: ${{ steps.detect-env.outputs.env }}
     steps:
       - name: Set the Environment based on the event's
-        id: detect-env
-        uses: docker://alpine:3.19
         run: |
           HOUR=$(date +%H)
           MINUTE=$(date +%M)
@@ -48,4 +44,8 @@ jobs:
               fi
           fi
           echo "Execution Environment set to: ${{ steps.detect-env.outputs.env }}"
-    
+        uses: docker://alpine:3.19
+        id: detect-env
+        shell: bash
+    outputs:
+      output1: ${{ steps.detect-env.outputs.env }}
