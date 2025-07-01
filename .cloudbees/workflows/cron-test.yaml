@@ -43,7 +43,7 @@ jobs:
                   echo "QA" > $CLOUDBEES_OUTPUTS/env
               fi
           fi
-          echo "Execution Environment set to: ${{ steps.detect-env.outputs.env }}"
+         
         uses: docker://alpine:3.19
         id: detect-env
         shell: bash
