@@ -18,10 +18,10 @@ jobs:
       - name: success_valid_env_reg_artifact
         uses: cloudbees-io/register-deployed-artifact@v2
         with:
-          target-environment: ${env}
-          artifact-id: \${{ steps.register.outputs.artifact-id }}
+          target-environment: QA
+          artifact-id: ${{ steps.register.outputs.artifact-id }}
       - name: add_labels_to_artifact_version
         uses: cloudbees-io/label-artifact-version@v1
         with:
-          artifact-id: \${{ steps.register.outputs.artifact-id }}
+          artifact-id: ${{ steps.register.outputs.artifact-id }}
           labels: one,one,two,two,three
