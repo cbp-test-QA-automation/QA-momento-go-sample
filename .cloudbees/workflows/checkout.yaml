@@ -4,6 +4,7 @@ name: My workflow
 on:
   workflow_dispatch:
 jobs:
+
   github:
     steps:
       - name: Checkout1
@@ -20,7 +21,7 @@ jobs:
           echo Commit ID = ${{ steps.checkout1.outputs.commit }}
           echo Commit URL = ${{ steps.checkout1.outputs.commit-url }}
           echo Ref = ${{ steps.checkout1.outputs.ref }}
-          if [ "${{ steps.checkout1.outputs.ref }}" = "refs/heads/main" ]; then echo "Ref variables match, continue..."; else echo "Ref references do not match, exiting."; exit 0; fi
+          if [ "${{ steps.checkout1.outputs.ref }}" = "refs/heads/main" ]; then echo "HEAD is same"; else echo "Main is not fetched correctly"; exit 0; fi
   github-anotherrepo:
     steps:
       - name: Checkout2
@@ -53,8 +54,8 @@ jobs:
         id: checkout3
         with:
           provider: github
-          repository: cbp-test-QA-automation/qa-python-helloworld
-          ref: b4b114f1881872dd1efb33ef7d474b48197c5889
+          repository: cbp-test-QA-automation/qa-python-hello-World
+          ref: 338333e039e6324ba91b4db3814055a5955a4bbd
         env:
           RUNNER_DEBUG: "1"
       - name: Commit3
@@ -64,11 +65,10 @@ jobs:
           echo "Commit 3:"
           echo "Inputs:"
           echo "  provider: github"
-          echo "  repository: cbp-test-QA-automation/qa-python-helloworld"
-          echo "  ref b4b114f1881872dd1efb33ef7d474b48197c5889"
+          echo "  repository: cbp-test-QA-automation/qa-python-hello-World"
+          echo "  ref 338333e039e6324ba91b4db3814055a5955a4bbd"
           echo Repository URL = ${{ steps.checkout3.outputs.repository-url }}
           echo Commit ID = ${{ steps.checkout3.outputs.commit }}
           echo Commit URL = ${{ steps.checkout3.outputs.commit-url }}
           echo Ref = ${{ steps.checkout3.outputs.ref }}
-          if [ "${{ steps.checkout3.outputs.commit }}" = "b4b114f1881872dd1efb33ef7d474b48197c5889" ]; then echo "Commits are same"; else echo "Commit details dees not match, exiting."; exit 0; fi
-  
+          if [ "${{ steps.checkout3.outputs.commit }}" = "338333e039e6324ba91b4db3814055a5955a4bbd" ]; then echo "Commits are same"; else echo "Commit details dees not match, exiting."; exit 0; fi
