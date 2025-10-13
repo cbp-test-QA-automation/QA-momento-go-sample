@@ -14,7 +14,7 @@ jobs:
     needs:
       - approval
   approval:
-    timeout-minutes: 15
+    timeout-minutes: 4000
     delegates: cloudbees-io/manual-approval/custom-job.yml@v1
     with:
       instructions: ""
